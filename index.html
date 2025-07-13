@@ -5,8 +5,9 @@
   <title>Crush mo ba ako?!</title>
   <style>
     body {
-      background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9');
-      background-size: cover;
+      background-image: url('https://images.app.goo.gl/SrJb8ShtgGju3F9P6');
+      background-size: contain;
+      background-repeat: no-repeat;
       background-position: center;
       font-family: Arial, sans-serif;
       display: flex;
@@ -19,21 +20,25 @@
       text-shadow: 1px 1px 3px #000;
     }
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       margin-bottom: 30px;
+      text-align: center;
     }
     .buttons {
       display: flex;
-      gap: 20px;
+      width: 80%;
+      max-width: 500px;
+      justify-content: space-between;
       position: relative;
     }
     button {
-      padding: 15px 25px;
-      font-size: 1.2rem;
+      padding: 10px 20px;
+      font-size: 1.1rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      position: relative;
     }
     .yes {
       background-color: #4CAF50;
@@ -42,17 +47,16 @@
     .no, .maybe {
       background-color: #f44336;
       color: white;
-      position: absolute;
     }
   </style>
 </head>
 <body>
 
-  <h1>Crush mo ba ako?! Boyyy!?</h1>
+  <h1>Crush mo ba ako?!<br>Boyyy!?</h1>
 
   <div class="buttons">
-    <button class="yes" onclick="alert('YEHEYYY! 😍')">Yes</button>
     <button class="no">No</button>
+    <button class="yes" onclick="alert('YEHEYYY! 😍')">Yes</button>
     <button class="maybe">Maybe</button>
   </div>
 
@@ -61,10 +65,13 @@
     const maybeBtn = document.querySelector('.maybe');
 
     function moveButton(button) {
-      const x = Math.random() * (window.innerWidth - 150);
-      const y = Math.random() * (window.innerHeight - 150);
-      button.style.left = x + 'px';
-      button.style.top = y + 'px';
+      const dx = (Math.random() - 0.5) * 60; // move -30 to +30 px
+      const dy = (Math.random() - 0.5) * 60;
+      const currentLeft = parseFloat(button.style.left || 0);
+      const currentTop = parseFloat(button.style.top || 0);
+      button.style.position = 'relative';
+      button.style.left = (currentLeft + dx) + 'px';
+      button.style.top = (currentTop + dy) + 'px';
     }
 
     noBtn.addEventListener('mouseenter', () => moveButton(noBtn));
